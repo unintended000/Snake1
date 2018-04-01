@@ -43,20 +43,6 @@
         />
 
     <ImageButton
-        android:id="@+id/But_left"
-        android:layout_width="55dp"
-        android:layout_height="55dp"
-        android:layout_marginLeft="-113dp"
-        android:layout_marginStart="19dp"
-        android:layout_marginTop="467dp"
-        android:background="?attr/listChoiceBackgroundIndicator"
-        android:onClick="Left_click"
-
-        app:layout_constraintLeft_toLeftOf="@+id/imageView16"
-        app:layout_constraintTop_toTopOf="@+id/imageView16"
-        app:srcCompat="@drawable/left" />
-
-    <ImageButton
         android:id="@+id/But_up"
         android:layout_width="55dp"
         android:layout_height="0dp"
@@ -83,5 +69,19 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView16"
         app:layout_constraintRight_toRightOf="@+id/imageView16"
         app:srcCompat="@drawable/right" />
+
+    <ImageButton
+        android:id="@+id/But_left"
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="66dp"
+        android:background="?attr/listChoiceBackgroundIndicator"
+        android:onClick="Left_click"
+
+        app:layout_constraintLeft_toLeftOf="@+id/imageView16"
+        app:layout_constraintTop_toTopOf="@+id/imageView16"
+        app:srcCompat="@drawable/left" />
 
 </android.support.constraint.ConstraintLayout>
