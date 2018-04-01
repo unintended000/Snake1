@@ -45,6 +45,6 @@ public String FILENAME="Field.txt";
     public void NewGame_Click(View view) {
         startActivity(new Intent(this, GameLayoutActivity.class));
 
-        cGame Game= new cGame(this);
+
     }
 }

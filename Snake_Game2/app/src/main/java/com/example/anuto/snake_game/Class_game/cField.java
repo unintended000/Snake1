@@ -19,7 +19,7 @@ import java.util.List;
 public class cField {
 
     cApple Apple;
-    cSnake Snake;
+    public cSnake Snake;
     List<cCellField> Field;
 
     public cField()

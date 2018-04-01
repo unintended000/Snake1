@@ -6,10 +6,10 @@ package com.example.anuto.snake_game.Class_game;
  *
  */
 
- class cCell {
+public class cCell {
 
-    byte CoordX;
-     byte CoordY;
+    public byte CoordX;
+     public byte CoordY;
 
      cCell(byte xx, byte yy){
         CoordX=xx;
