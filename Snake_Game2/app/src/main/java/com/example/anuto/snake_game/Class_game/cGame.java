@@ -45,7 +45,7 @@ public class cGame {
 
     public void Start_Game(){
         TimerTask TimeTask = new UpdateTimeTask();
-        Game_Timer.schedule(TimeTask, 0, 250);
+        Game_Timer.schedule(TimeTask, 250, 1000);
     }
 
     //region [Движение]
@@ -58,7 +58,7 @@ public class cGame {
     }
 
     public void Turn(EDirection Direction){
-        m_enDirection=m_enDirection;
+        m_enDirection=Direction;
 
     }
 

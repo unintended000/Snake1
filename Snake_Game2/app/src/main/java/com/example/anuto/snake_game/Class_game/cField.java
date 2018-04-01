@@ -18,7 +18,7 @@ import java.util.List;
 
 public class cField {
 
-    cApple Apple;
+    public cApple Apple;
     public cSnake Snake;
     List<cCellField> Field;
 
