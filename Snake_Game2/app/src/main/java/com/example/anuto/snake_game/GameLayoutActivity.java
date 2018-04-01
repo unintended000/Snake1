@@ -2,24 +2,14 @@ package com.example.anuto.snake_game;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.Layout;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.anuto.snake_game.Class_game.Draw;
 import com.example.anuto.snake_game.Class_game.cGame;
 
-import org.w3c.dom.Text;
-
-import java.lang.reflect.Field;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -28,7 +18,7 @@ public class GameLayoutActivity extends AppCompatActivity {
 
 
     private Timer Game_Timer;
-    private cGame Game;
+    public cGame Game;
     public TextView  Text1;
     int a;
     private cGame.EDirection LastKey;
@@ -47,8 +37,10 @@ public class GameLayoutActivity extends AppCompatActivity {
         TimerTask TimeTask = new UpdateTime();
         Game_Timer.schedule(TimeTask,0, 50);
 
+
         ConstraintLayout Layout = (ConstraintLayout) findViewById(R.id.Field_layout) ;
-        Draw draw = new Draw(this);
+
+        Draw draw = new Draw(this, Game.Field);
         Layout.addView(draw);
 
 

@@ -20,7 +20,7 @@ public class cField {
 
     public cApple Apple;
     public cSnake Snake;
-    List<cCellField> Field;
+    public List<cCellField> Field;
 
     public cField()
     {
