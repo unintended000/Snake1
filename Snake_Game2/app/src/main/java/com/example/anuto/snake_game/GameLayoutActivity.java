@@ -40,8 +40,10 @@ public class GameLayoutActivity extends AppCompatActivity {
 
         ConstraintLayout Layout = (ConstraintLayout) findViewById(R.id.Field_layout) ;
 
-        Draw draw = new Draw(this, Game.Field);
+        Draw draw = new Draw(this, Game.Field, Draw.enWhatDraw.FieldDraw);
+        Draw draw2 = new Draw(this, Game.Field, Draw.enWhatDraw.Snake);
         Layout.addView(draw);
+        Layout.addView(draw2);
 
 
     }

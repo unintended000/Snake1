@@ -9,9 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView16"
-        android:layout_width="190dp"
-        android:layout_height="190dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="180dp"
+        android:layout_height="178dp"
         android:layout_marginRight="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -22,7 +21,7 @@
         android:id="@+id/But_down"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="19dp"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="66dp"
         android:layout_marginRight="66dp"
         android:background="?attr/listChoiceBackgroundIndicator"
@@ -36,16 +35,19 @@
         android:id="@+id/But_up"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginLeft="66dp"
-        android:layout_marginStart="66dp"
-        android:layout_marginTop="19dp"
         android:background="?attr/listChoiceBackgroundIndicator"
 
 
         android:onClick="Up_click"
-        app:layout_constraintLeft_toLeftOf="@+id/imageView16"
+        app:srcCompat="@drawable/up"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@+id/But_down"
         app:layout_constraintTop_toTopOf="@+id/imageView16"
-        app:srcCompat="@drawable/up" />
+        android:layout_marginTop="8dp"
+        app:layout_constraintVertical_bias="0.055"
+        app:layout_constraintRight_toLeftOf="@+id/imageView16"
+        app:layout_constraintLeft_toRightOf="@+id/But_right"
+        app:layout_constraintHorizontal_bias="0.472" />
 
     <ImageButton
         android:id="@+id/But_right"
@@ -65,15 +67,19 @@
         android:id="@+id/But_left"
         android:layout_width="55dp"
         android:layout_height="55dp"
-        android:layout_marginLeft="19dp"
         android:layout_marginStart="19dp"
-        android:layout_marginTop="66dp"
         android:background="?attr/listChoiceBackgroundIndicator"
         android:onClick="Left_click"
 
+        app:srcCompat="@drawable/left"
+        app:layout_constraintRight_toLeftOf="@+id/But_right"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="19dp"
         app:layout_constraintLeft_toLeftOf="@+id/imageView16"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintTop_toTopOf="@+id/imageView16"
-        app:srcCompat="@drawable/left" />
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="8dp" />
 
     <Button
         android:id="@+id/button"
@@ -99,13 +105,18 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/Field_layout"
-        android:layout_width="360dp"
-        android:layout_height="340dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView16"
+        android:layout_width="380dp"
+        android:layout_height="400dp"
+        android:maxHeight="800px"
+        android:maxWidth="760px"
+        android:minHeight="0dp"
+        android:minWidth="760px"
+        tools:minHeight="800px"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.333"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent">
+        app:layout_constraintBottom_toTopOf="@+id/imageView16"
+        app:layout_constraintVertical_bias="0.071">
 
     </android.support.constraint.ConstraintLayout>
 

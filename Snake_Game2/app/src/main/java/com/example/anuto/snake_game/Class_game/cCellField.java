@@ -8,9 +8,9 @@ public class cCellField extends  cCell {
 
     public boolean type;
 
-    cCellField(byte xx, byte yy, boolean type){
+    cCellField(byte xx, byte yy, boolean type1){
         super(xx,yy);
-        type=type;
+        type=type1;
 
     }
 }

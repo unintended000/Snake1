@@ -5,15 +5,10 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.constraint.ConstraintLayout;
 import android.view.View;
 
 import com.example.anuto.snake_game.Class_game.cField;
-import com.example.anuto.snake_game.Class_game.cGame;
-
-import java.lang.reflect.Field;
 
 /**
  * Created by anuto on 02.04.2018.
@@ -22,48 +17,95 @@ import java.lang.reflect.Field;
 public class Draw extends View {
     private Bitmap mBitmap_grass;
     private Bitmap mBitmap_stone;
-    //размеры поля
-    private int CountBlockWidth=19;
-    private int CountBlockHeight=20;
-
+    private  Bitmap mBitmap_snake;
+    private Bitmap mBitmap_apple;
     cField mField;
+    enWhatDraw mWhatDraw;
 
-    public Draw(Context context,  cField Field) {
-        super(context);
-         mField=Field;
-        Resources res = this.getResources();
-        mBitmap_grass = BitmapFactory.decodeResource(res, R.drawable.grass);
-
-
-        mBitmap_stone = BitmapFactory.decodeResource(res, R.drawable.stone);
+    enum enWhatDraw {
+        FieldDraw,
+        Apple,
+        Snake
 
     }
+
+    public Draw(Context context,  cField Field, enWhatDraw WhatDraw) {
+        super(context);
+         mField=Field;
+         mWhatDraw =WhatDraw;
+
+        Resources res = this.getResources();
+        switch (mWhatDraw) {
+            case FieldDraw:
+                mBitmap_grass = BitmapFactory.decodeResource(res, R.drawable.grass);
+                mBitmap_stone = BitmapFactory.decodeResource(res, R.drawable.stone);
+                break;
+            case Snake:
+                mBitmap_snake = BitmapFactory.decodeResource(res, R.drawable.snakeskin1);
+                break;
+            case Apple:
+                break;
+
+
+
+        }
+
+
+        }
+
     private Paint mPaint = new Paint();
     @Override
     protected void onDraw(Canvas canvas){
         super.onDraw(canvas);
 
-      //
-       canvas.drawBitmap(mBitmap_stone,0, 0, mPaint);
-        canvas.drawBitmap(mBitmap_grass, 60, 0, mPaint);
+        switch (mWhatDraw) {
 
-        int i;
-        int j;
-        for (int Count=0;mField.Field.size() > Count;Count++ ){
+            //region [Рисуем поле]
+            case FieldDraw: {
+                int i;
+                int j;
 
-            if (mField.Field.get(Count).type) {
+                for (int Count = 0; mField.Field.size() > Count; Count++) {
 
-                i = mField.Field.get(Count).CoordX * 30;
-                j = mField.Field.get(Count).CoordY * 30;
-                canvas.drawBitmap(mBitmap_stone, i, j, mPaint);
-            }else{
-              /*  i = mField.Field.get(Count).CoordX * 15;
-                j = mField.Field.get(Count).CoordY * 15;
-                canvas.drawBitmap(mBitmap_grass, i, j, mPaint);*/
+                    if (mField.Field.get(Count).type) {
+
+                        i = mField.Field.get(Count).CoordX * 40;
+                        j = mField.Field.get(Count).CoordY * 40;
+                        canvas.drawBitmap(mBitmap_stone, i, j, mPaint);
+                    } else {
+                        i = mField.Field.get(Count).CoordX * 40;
+                        j = mField.Field.get(Count).CoordY * 40;
+                        canvas.drawBitmap(mBitmap_grass, i, j, mPaint);
+                    }
+
+                }
+                break;
             }
+            //endregion
+
+            //region [Рисуем змею]
+            case Snake:
+                int i;
+                int j;
+                for (int Count = 0; mField.Snake.SnakeList.size()> Count; Count++) {
+
+                        i = mField.Snake.SnakeList.get(Count).CoordX * 40;
+                        j = mField.Snake.SnakeList.get(Count).CoordY * 40;
+                        canvas.drawBitmap(mBitmap_snake, i, j, mPaint);
+                    }
+                break;
+            //endregion
+
+            //region [Рисуем яблоко]
+            case Apple:
+                break;
+            //endregion
+        }
+
         }
 
 
 
     }
-}
+
+
