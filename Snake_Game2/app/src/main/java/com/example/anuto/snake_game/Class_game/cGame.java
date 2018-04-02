@@ -45,7 +45,7 @@ public class cGame {
 
     public void Start_Game(){
         TimerTask TimeTask = new UpdateTimeTask();
-        Game_Timer.schedule(TimeTask, 250, 1000);
+        Game_Timer.schedule(TimeTask, 0, 300);
     }
 
     //region [Движение]
@@ -64,7 +64,7 @@ public class cGame {
 
     //Проверка на блок или змею
     private boolean Check_block_or_Snake (cCellSnake CheckCellSnake){
-          /*  if (Field.Field.contains(new cCellField(CheckCellSnake.CoordX,CheckCellSnake.CoordY,true)))
+            if (Field.Field.contains(new cCellField(CheckCellSnake.CoordX,CheckCellSnake.CoordY,true)))
             {
                return false;
 
@@ -73,8 +73,8 @@ public class cGame {
                 return  false;
             } else{
                 return true;
-            }*/
-          return true;
+            }
+
 
     }
 

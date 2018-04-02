@@ -105,18 +105,19 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/Field_layout"
-        android:layout_width="380dp"
-        android:layout_height="400dp"
+        android:layout_width="396dp"
+        android:layout_height="478dp"
         android:maxHeight="800px"
         android:maxWidth="760px"
         android:minHeight="0dp"
         android:minWidth="760px"
-        tools:minHeight="800px"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView16"
+        app:layout_constraintHorizontal_bias="0.175"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/imageView16"
-        app:layout_constraintVertical_bias="0.071">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.057"
+        tools:minHeight="800px">
 
     </android.support.constraint.ConstraintLayout>
 

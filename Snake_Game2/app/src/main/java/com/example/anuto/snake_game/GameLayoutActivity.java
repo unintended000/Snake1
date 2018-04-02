@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.anuto.snake_game.Class_game.Draw_Field;
+import com.example.anuto.snake_game.Class_game.Draw_Snake;
 import com.example.anuto.snake_game.Class_game.cGame;
 
 import java.util.Timer;
@@ -22,6 +24,8 @@ public class GameLayoutActivity extends AppCompatActivity {
     public TextView  Text1;
     int a;
     private cGame.EDirection LastKey;
+    private ConstraintLayout Field_layout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,17 +37,20 @@ public class GameLayoutActivity extends AppCompatActivity {
 
         a=0;
         Text1 = (TextView) findViewById(R.id.textView);
-      Game_Timer=new Timer();
+        Game_Timer=new Timer();
         TimerTask TimeTask = new UpdateTime();
         Game_Timer.schedule(TimeTask,0, 50);
 
 
-        ConstraintLayout Layout = (ConstraintLayout) findViewById(R.id.Field_layout) ;
+        Field_layout = (ConstraintLayout) findViewById(R.id.Field_layout) ;
+        Draw_Field drawField = new Draw_Field(this, Game.Field);
+        Field_layout.addView(drawField);
 
-        Draw draw = new Draw(this, Game.Field, Draw.enWhatDraw.FieldDraw);
-        Draw draw2 = new Draw(this, Game.Field, Draw.enWhatDraw.Snake);
-        Layout.addView(draw);
-        Layout.addView(draw2);
+
+        Draw_Snake drawSnake= new Draw_Snake(this, Game.Field.Snake);
+        Field_layout.addView(drawSnake);
+
+
 
 
     }
@@ -64,7 +71,12 @@ public class GameLayoutActivity extends AppCompatActivity {
                 public void run() {
                  //  Text1.setText("Голова "+Game.Field.Snake.SnakeList.get(0).CoordX+"  "+Game.Field.Snake.SnakeList.get(0).CoordY+"   Длина"+Game.Field.Snake.SnakeList.size() );
 
+                  //  Draw draw2 = new Draw(GameLayoutActivity.this, Game.Field, Draw.enWhatDraw.Snake);
+                 //
 
+
+                    Draw_Snake drawSnake= new Draw_Snake(GameLayoutActivity.this, Game.Field.Snake);
+                    Field_layout.addView(drawSnake);
 
 
 
@@ -75,16 +87,7 @@ public class GameLayoutActivity extends AppCompatActivity {
         }
     }
 
-    public class Draw2D extends View{
-        public Draw2D(Context context) {
-            super(context);
-        }
 
-        @Override
-        protected void onDraw(Canvas canvas){
-            super.onDraw(canvas);
-        }
-    }
 
 
    public void Down_click(View view) {
