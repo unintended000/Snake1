@@ -5,11 +5,9 @@ import android.content.Context;
 
 import java.io.BufferedReader;
 import java.io.FileInputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.List;
 
 
 /**
@@ -20,7 +18,7 @@ public class cField {
 
     public cApple Apple;
     public cSnake Snake;
-    public List<cCellField> Field;
+    public ArrayList<cCellField> Field;
 
     public cField()
     {
@@ -29,11 +27,11 @@ public class cField {
 
     }
 
-    public void Load(String FILENAME, Context context){
+    void Load(Context context){
 
         try{
 
-            FileInputStream fIn = context.getApplicationContext().openFileInput(FILENAME);
+            FileInputStream fIn = context.getApplicationContext().openFileInput("Field.txt");
             BufferedReader br = new BufferedReader(new InputStreamReader(fIn));
 
            // BufferedReader br = new BufferedReader(new FileReader(FILENAME));
@@ -79,6 +77,11 @@ public class cField {
 
 
 
+    }
+
+
+    void GetApple(){
+        Apple=Apple.NewApple(Field);
     }
 
 

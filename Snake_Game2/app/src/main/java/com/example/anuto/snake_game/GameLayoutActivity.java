@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.example.anuto.snake_game.Class_game.Draw_Apple;
 import com.example.anuto.snake_game.Class_game.Draw_Field;
 import com.example.anuto.snake_game.Class_game.Draw_Snake;
 import com.example.anuto.snake_game.Class_game.cGame;
@@ -20,43 +21,43 @@ public class GameLayoutActivity extends AppCompatActivity {
 
 
     private Timer Game_Timer;
-    public cGame Game;
-    public TextView  Text1;
-    int a;
+    private cGame Game;
+    private TextView  Text1;
+    private TextView  Text2;
+
     private cGame.EDirection LastKey;
     private ConstraintLayout Field_layout;
+    private ConstraintLayout Snake_layout;
+    private ConstraintLayout Apple_layout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_layout);
-        Game= new cGame(this);
 
-        LastKey= cGame.EDirection.Left;
-        Game.Turn(LastKey);
+        //region FindById
+        Field_layout = (ConstraintLayout) findViewById(R.id.Field_layout) ;
+        Snake_layout = (ConstraintLayout) findViewById(R.id.Snake_layout) ;
+        Apple_layout = (ConstraintLayout) findViewById(R.id.Apple_layout) ;
 
-        a=0;
-        Text1 = (TextView) findViewById(R.id.textView);
+        Text1=(TextView)findViewById(R.id.textView);
+        Text2=(TextView)findViewById(R.id.textView2);
+        //endregion
+
+
+
         Game_Timer=new Timer();
         TimerTask TimeTask = new UpdateTime();
         Game_Timer.schedule(TimeTask,0, 50);
 
 
-        Field_layout = (ConstraintLayout) findViewById(R.id.Field_layout) ;
-        Draw_Field drawField = new Draw_Field(this, Game.Field);
-        Field_layout.addView(drawField);
+        Game= new cGame(this);
+        LastKey= cGame.EDirection.Left;
+        Game.Turn(LastKey);
 
-
-        Draw_Snake drawSnake= new Draw_Snake(this, Game.Field.Snake);
-        Field_layout.addView(drawSnake);
-
-
-
-
-    }
-
-    public void But_click(View view) {
-        Text1.setText(""+a);
+        Paint_Field();
+        Paint_Snake();
+        Paint_Apple();
 
 
     }
@@ -69,52 +70,58 @@ public class GameLayoutActivity extends AppCompatActivity {
 
                 @Override
                 public void run() {
-                 //  Text1.setText("Голова "+Game.Field.Snake.SnakeList.get(0).CoordX+"  "+Game.Field.Snake.SnakeList.get(0).CoordY+"   Длина"+Game.Field.Snake.SnakeList.size() );
 
-                  //  Draw draw2 = new Draw(GameLayoutActivity.this, Game.Field, Draw.enWhatDraw.Snake);
-                 //
-
-
-                    Draw_Snake drawSnake= new Draw_Snake(GameLayoutActivity.this, Game.Field.Snake);
-                    Field_layout.addView(drawSnake);
-
-
+                    Paint_Snake();
+                    Paint_Apple();
+                    Text1.setText("Змея "+Game.Field.Snake.SnakeList.size()+"   " + Game.Field.Snake.SnakeList.get(0).CoordX+","+Game.Field.Snake.SnakeList.get(0).CoordY);
+                    Text2.setText("Яблоко "+Game.Field.Apple.CoordX+","+Game.Field.Apple.CoordY+ "  Очки "+Game.Point+ "  Жизнь "+Game.Life);
 
                 }
             });
-
-
         }
     }
 
 
+   //region Рисование
+    private void Paint_Snake(){
+        Snake_layout.removeAllViews();
+        Draw_Snake drawSnake= new Draw_Snake(GameLayoutActivity.this, Game.Field.Snake);
+        Snake_layout.addView(drawSnake);
+
+    }
+
+    public void Paint_Apple(){
+        Apple_layout.removeAllViews();
+        Draw_Apple drawApple=new Draw_Apple(GameLayoutActivity.this, Game.Field.Apple);
+        Apple_layout.addView(drawApple);
+    }
+
+    private void Paint_Field(){
+        Draw_Field drawField = new Draw_Field(this, Game.Field);
+        Field_layout.addView(drawField);
+    }
+    //endregion
 
 
-   public void Down_click(View view) {
-
+   // region Кнопки
+    public void Down_click(View view) {
        if (LastKey!= cGame.EDirection.Up){
             LastKey= cGame.EDirection.Down;
             Game.Turn(LastKey);
-
         }
-
-
     }
 
     public void Up_click(View view) {
         if (LastKey!= cGame.EDirection.Down){
             LastKey = cGame.EDirection.Up;
             Game.Turn(LastKey);
-
         }
-
     }
 
     public void Left_click(View view) {
         if (LastKey!= cGame.EDirection.Right){
             LastKey = cGame.EDirection.Left;
             Game.Turn(LastKey);
-
         }
     }
 
@@ -124,4 +131,6 @@ public class GameLayoutActivity extends AppCompatActivity {
             Game.Turn(LastKey);
         }
     }
+    //endregion
+
     }
