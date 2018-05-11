@@ -7,11 +7,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.anuto.snake_game.Class_game.cGame;
+import com.example.anuto.snake_game.NN.GA.GA.cGA;
 
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -47,4 +49,16 @@ public String FILENAME="Field.txt";
 
 
     }
+    public void Click(View view) {
+
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(2);
+        list.add(3);
+        list.add(4);
+        cGA GA = new cGA(3,list,2);
+        int[] k= {3,2,4};
+        GA.setPrice( k);
+        GA.Learning();
+    }
+
 }
